@@ -13,8 +13,8 @@ const spaceGrotesk = Space_Grotesk({
 });
 
 export const metadata: Metadata = {
-  title: "Zaheer — Developer Portfolio",
-  description: "Full Stack Developer Portfolio",
+  title: "Zaheer — Full Stack Developer",
+  description: "Full Stack Developer — Building modern web applications with clean code and smooth experiences.",
 };
 
 export default function RootLayout({

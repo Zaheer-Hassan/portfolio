@@ -6,6 +6,7 @@ export interface Project {
   liveUrl?: string;
   githubUrl?: string;
   image: string;
+  stats?: { label: string; value: string }[];
 }
 
 export const projects: Project[] = [
@@ -17,6 +18,7 @@ export const projects: Project[] = [
     liveUrl: "https://example.com",
     githubUrl: "https://github.com/zaheer/project-one",
     image: "/images/project-1.png",
+    stats: [{ label: "Performance", value: "95%" }, { label: "Load Time", value: "1.2s" }],
   },
   {
     id: 2,
@@ -26,6 +28,7 @@ export const projects: Project[] = [
     liveUrl: "https://example.com",
     githubUrl: "https://github.com/zaheer/project-two",
     image: "/images/project-2.png",
+    stats: [{ label: "Users", value: "500+" }, { label: "Uptime", value: "99.9%" }],
   },
   {
     id: 3,
