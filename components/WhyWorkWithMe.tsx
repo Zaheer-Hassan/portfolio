@@ -37,10 +37,10 @@ export default function WhyWorkWithMe() {
           <motion.div initial={{ opacity: 0, x: 30 }} whileInView={{ opacity: 1, x: 0 }} viewport={{ once: true }} transition={{ duration: 0.6 }} className="rounded-2xl border border-border bg-card p-12 flex items-center justify-center">
             <div className="text-center">
               <p className="text-6xl font-heading font-bold text-accent mb-2">5+</p>
-              <p className="text-muted text-sm">Happy Clients</p>
+              <p className="text-muted text-sm">Years Experience</p>
               <div className="mt-6 h-px bg-border w-24 mx-auto" />
-              <p className="text-4xl font-heading font-bold text-white mt-6 mb-2">20+</p>
-              <p className="text-muted text-sm">Projects Completed</p>
+              <p className="text-4xl font-heading font-bold text-white mt-6 mb-2">10+</p>
+              <p className="text-muted text-sm">Fintech Projects Delivered</p>
             </div>
           </motion.div>
         </div>

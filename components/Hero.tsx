@@ -26,7 +26,7 @@ export default function Hero() {
           transition={{ duration: 0.5, delay: 0.2 }}
           className="text-accent text-sm font-mono tracking-widest uppercase mb-6"
         >
-          // FULL STACK DEVELOPER
+          // SR. SOFTWARE ENGINEER
         </motion.p>
 
         <motion.h1
@@ -35,8 +35,8 @@ export default function Hero() {
           transition={{ duration: 0.6, delay: 0.4 }}
           className="text-5xl md:text-7xl font-heading font-bold leading-tight mb-6"
         >
-          Build Smarter. Ship Faster.{" "}
-          <Highlight>With Code.</Highlight>
+          Scalable Fintech. Clean Code.{" "}
+          <Highlight>Real Impact.</Highlight>
         </motion.h1>
 
         <motion.p
@@ -45,8 +45,8 @@ export default function Hero() {
           transition={{ duration: 0.5, delay: 0.6 }}
           className="text-muted text-lg md:text-xl max-w-2xl mx-auto mb-10"
         >
-          I build modern, scalable web applications with clean architecture and
-          pixel-perfect interfaces that drive results.
+          5+ years building high-performance fintech applications with Vue.js, Node.js,
+          and Laravel. Specializing in payment systems, microservices, and scalable architectures.
         </motion.p>
 
         <motion.div

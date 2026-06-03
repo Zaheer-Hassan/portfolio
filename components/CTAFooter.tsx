@@ -15,9 +15,14 @@ export default function CTAFooter() {
           <motion.p initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ duration: 0.5, delay: 0.2 }} className="text-muted text-lg mb-10">
             Have a project in mind? Let&apos;s discuss how I can help bring your vision to life.
           </motion.p>
-          <motion.a initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ duration: 0.5, delay: 0.4 }} href="mailto:zaheerulhassan08@gmail.com" className="inline-block px-10 py-4 bg-accent hover:bg-accent-light text-black font-medium text-lg rounded-lg transition-colors">
-            Get Started
-          </motion.a>
+          <motion.div initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ duration: 0.5, delay: 0.4 }} className="flex gap-4 justify-center flex-wrap">
+            <a href="mailto:zaheerulhassan08@gmail.com" className="px-10 py-4 bg-accent hover:bg-accent-light text-black font-medium text-lg rounded-lg transition-colors">
+              Email Me
+            </a>
+            <a href="https://wa.me/923100477551" target="_blank" rel="noopener noreferrer" className="px-10 py-4 border border-border hover:border-accent text-white font-medium text-lg rounded-lg transition-colors">
+              WhatsApp
+            </a>
+          </motion.div>
         </div>
       </div>
 
@@ -28,8 +33,9 @@ export default function CTAFooter() {
           </p>
           <div className="flex gap-6">
             <a href="https://github.com/Zaheer-Hassan" target="_blank" rel="noopener noreferrer" className="text-dim hover:text-accent transition-colors text-sm">GitHub</a>
-            <a href="https://linkedin.com/in/zaheer" target="_blank" rel="noopener noreferrer" className="text-dim hover:text-accent transition-colors text-sm">LinkedIn</a>
+            <a href="https://linkedin.com/in/zaheer-ul-hassan-02153a1a7/" target="_blank" rel="noopener noreferrer" className="text-dim hover:text-accent transition-colors text-sm">LinkedIn</a>
             <a href="mailto:zaheerulhassan08@gmail.com" className="text-dim hover:text-accent transition-colors text-sm">Email</a>
+            <a href="https://wa.me/923100477551" target="_blank" rel="noopener noreferrer" className="text-dim hover:text-accent transition-colors text-sm">WhatsApp</a>
           </div>
         </div>
       </footer>

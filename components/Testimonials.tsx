@@ -24,16 +24,7 @@ export default function Testimonials() {
           {testimonials.map((t) => (
             <motion.div key={t.name} variants={item} className="p-8 rounded-2xl border border-border bg-card">
               <p className="text-accent text-4xl font-heading mb-4">&ldquo;</p>
-              <p className="text-muted text-sm mb-6 leading-relaxed">{t.quote}</p>
-              <div className="flex items-center gap-3">
-                <div className="w-10 h-10 rounded-full bg-border flex items-center justify-center text-sm font-bold text-accent">
-                  {t.name.charAt(0)}
-                </div>
-                <div>
-                  <p className="text-white text-sm font-medium">{t.name}</p>
-                  <p className="text-dim text-xs">{t.role}</p>
-                </div>
-              </div>
+              <p className="text-muted text-sm leading-relaxed">{t.quote}</p>
             </motion.div>
           ))}
         </motion.div>

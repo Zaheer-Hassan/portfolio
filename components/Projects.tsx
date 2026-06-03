@@ -1,90 +1,133 @@
 "use client";
 
-import { motion, useScroll, useTransform } from "framer-motion";
-import { useRef } from "react";
+import { motion } from "framer-motion";
+import Image from "next/image";
 import { projects } from "@/data/projects";
 import Highlight from "./Highlight";
 import SectionLabel from "./SectionLabel";
 
-function ProjectCard({
-  project,
-  index,
-  total,
-}: {
-  project: (typeof projects)[0];
-  index: number;
-  total: number;
-}) {
-  const cardRef = useRef<HTMLDivElement>(null);
-  const { scrollYProgress } = useScroll({
-    target: cardRef,
-    offset: ["start end", "start start"],
-  });
+const tileVariants = {
+  hidden: { opacity: 0, y: 30, scale: 0.95 },
+  show: { opacity: 1, y: 0, scale: 1 },
+};
 
-  const scale = useTransform(scrollYProgress, [0, 1], [0.9, 1]);
-  const topOffset = 80 + index * 20;
+const containerVariants = {
+  hidden: {},
+  show: { transition: { staggerChildren: 0.08 } },
+};
 
+function BentoProject({ project, index }: { project: (typeof projects)[0]; index: number }) {
   return (
-    <div ref={cardRef} className="h-[70vh]" style={{ zIndex: total - index }}>
+    <div className="mb-24">
+      {/* Project number + title header */}
       <motion.div
-        style={{ scale, top: `${topOffset}px` }}
-        className="sticky w-full max-w-4xl mx-auto rounded-2xl border border-border bg-card p-6 md:p-8 shadow-2xl hover:border-accent/30 transition-colors"
+        initial={{ opacity: 0, x: -30 }}
+        whileInView={{ opacity: 1, x: 0 }}
+        viewport={{ once: true }}
+        transition={{ duration: 0.5 }}
+        className="flex items-center gap-4 mb-6"
       >
-        <div className="w-full h-48 md:h-64 bg-background rounded-xl mb-6 flex items-center justify-center overflow-hidden border border-border">
-          <span className="text-dim text-sm">Project Screenshot</span>
+        <span className="text-accent text-3xl">
+          <svg xmlns="http://www.w3.org/2000/svg" width="36" height="36" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"><path d="M22 19a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h5l2 3h9a2 2 0 0 1 2 2z"/></svg>
+        </span>
+        <div>
+          <h3 className="text-2xl md:text-3xl font-heading font-bold">{project.title}</h3>
+          <p className="text-accent text-sm">{project.role}</p>
         </div>
+      </motion.div>
 
-        <div className="flex flex-col md:flex-row md:items-start md:justify-between gap-4">
-          <div className="flex-1">
-            <h3 className="text-2xl font-heading font-bold mb-2">{project.title}</h3>
-            <p className="text-muted mb-4 text-sm">{project.description}</p>
+      {/* Bento Grid */}
+      <motion.div
+        variants={containerVariants}
+        initial="hidden"
+        whileInView="show"
+        viewport={{ once: true, amount: 0.1 }}
+        className="grid grid-cols-1 md:grid-cols-4 gap-4"
+      >
+        {/* Image — spans 2 cols, 2 rows */}
+        <motion.div variants={tileVariants} transition={{ duration: 0.5 }} className="md:col-span-2 md:row-span-2 rounded-2xl border border-border bg-card p-3 overflow-hidden hover:border-accent/30 transition-colors">
+          <Image
+            src={project.image}
+            alt={project.title}
+            width={800}
+            height={500}
+            className="w-full h-auto rounded-xl"
+          />
+        </motion.div>
 
-            <div className="flex flex-wrap gap-2 mb-4">
-              {project.tech.map((t) => (
-                <span
-                  key={t}
-                  className="px-3 py-1 text-xs bg-accent/10 text-accent border border-accent/20 rounded-full"
-                >
-                  {t}
-                </span>
-              ))}
-            </div>
+        {/* Description */}
+        <motion.div variants={tileVariants} transition={{ duration: 0.5 }} className="md:col-span-2 rounded-2xl border border-border bg-card p-5 hover:border-accent/30 transition-colors">
+          <p className="text-accent text-xs font-mono uppercase tracking-wider mb-2">About</p>
+          <p className="text-muted text-sm leading-relaxed">{project.description}</p>
+        </motion.div>
 
-            {project.stats && (
-              <div className="flex gap-6">
-                {project.stats.map((stat) => (
-                  <div key={stat.label}>
-                    <span className="text-2xl font-heading font-bold text-accent">{stat.value}</span>
-                    <p className="text-dim text-xs">{stat.label}</p>
-                  </div>
-                ))}
+        {/* Stats + Links */}
+        <motion.div variants={tileVariants} transition={{ duration: 0.5 }} className="md:col-span-2 rounded-2xl border border-border bg-card p-5 flex items-center justify-between hover:border-accent/30 transition-colors">
+          <div className="flex gap-6">
+            {project.stats?.map((stat) => (
+              <div key={stat.label}>
+                <span className="text-2xl font-heading font-bold text-accent">{stat.value}</span>
+                <p className="text-dim text-xs">{stat.label}</p>
               </div>
-            )}
+            ))}
           </div>
-
-          <div className="flex gap-3 md:flex-col">
+          <div className="flex gap-3">
+            <a
+              href={project.githubUrl || "https://github.com/Zaheer-Hassan"}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="px-4 py-2 text-sm border border-border hover:border-accent text-white rounded-lg transition-colors"
+            >
+              GitHub
+            </a>
             {project.liveUrl && (
               <a
                 href={project.liveUrl}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="px-4 py-2 text-sm bg-accent hover:bg-accent-light text-black rounded-lg transition-colors text-center font-medium"
+                className="px-4 py-2 text-sm bg-accent hover:bg-accent-light text-black rounded-lg transition-colors font-medium"
               >
                 Live Demo
               </a>
             )}
-            {project.githubUrl && (
-              <a
-                href={project.githubUrl}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="px-4 py-2 text-sm border border-border hover:border-accent text-white rounded-lg transition-colors text-center"
-              >
-                GitHub
-              </a>
-            )}
           </div>
-        </div>
+        </motion.div>
+
+        {/* My Contribution */}
+        <motion.div variants={tileVariants} transition={{ duration: 0.5 }} className="md:col-span-2 rounded-2xl border border-border bg-card p-5 hover:border-accent/30 transition-colors">
+          <p className="text-accent text-xs font-mono uppercase tracking-wider mb-2">My Contribution</p>
+          <p className="text-muted text-sm leading-relaxed">{project.contribution}</p>
+        </motion.div>
+
+        {/* Tech Stack */}
+        <motion.div variants={tileVariants} transition={{ duration: 0.5 }} className="md:col-span-2 rounded-2xl border border-border bg-card p-5 hover:border-accent/30 transition-colors">
+          <p className="text-accent text-xs font-mono uppercase tracking-wider mb-3">Tech Stack</p>
+          <div className="flex flex-wrap gap-2">
+            {project.tech.map((t) => (
+              <span
+                key={t}
+                className="px-3 py-1 text-xs bg-accent/10 text-accent border border-accent/20 rounded-full"
+              >
+                {t}
+              </span>
+            ))}
+          </div>
+        </motion.div>
+
+        {/* Sub Services — only if present */}
+        {project.subServices && (
+          <motion.div variants={tileVariants} transition={{ duration: 0.5 }} className="md:col-span-2 rounded-2xl border border-border bg-card p-5 hover:border-accent/30 transition-colors">
+            <p className="text-accent text-xs font-mono uppercase tracking-wider mb-3">Services</p>
+            <div className="grid grid-cols-1 sm:grid-cols-3 gap-3">
+              {project.subServices.map((sub) => (
+                <div key={sub.title} className="p-3 rounded-xl border border-border bg-background">
+                  <p className="text-white text-xs font-medium mb-1">{sub.title}</p>
+                  <p className="text-dim text-[11px] leading-relaxed">{sub.description}</p>
+                </div>
+              ))}
+            </div>
+          </motion.div>
+        )}
       </motion.div>
     </div>
   );
@@ -110,12 +153,12 @@ export default function Projects() {
         transition={{ duration: 0.5, delay: 0.1 }}
         className="text-muted text-center mb-16 max-w-xl mx-auto"
       >
-        A collection of projects that showcase my skills and expertise.
+        Each project is a story of solving real problems with code.
       </motion.p>
 
-      <div className="max-w-4xl mx-auto">
+      <div className="max-w-6xl mx-auto">
         {projects.map((project, i) => (
-          <ProjectCard key={project.id} project={project} index={i} total={projects.length} />
+          <BentoProject key={project.id} project={project} index={i} />
         ))}
       </div>
     </section>
