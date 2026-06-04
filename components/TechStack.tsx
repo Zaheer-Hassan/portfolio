@@ -5,12 +5,10 @@ import Highlight from "./Highlight";
 import SectionLabel from "./SectionLabel";
 
 const techItems = [
-  "Vue.js", "React.js", "Node.js", "Laravel", "PHP",
-  "JavaScript", "TypeScript", "PostgreSQL", "MySQL", "MongoDB",
-  "AWS", "Docker", "Git", "Tailwind CSS", "Material UI",
-  "Quasar", "Pinia", "Vuex", "Redux", "REST APIs",
-  "Microservices", "CI/CD", "Cloudflare", "Hetzner",
-  "OpenAI", "Whisper", "AI Agents", "Python",
+  "Vue.js", "React.js", "Node.js", "Laravel",
+  "JavaScript", "TypeScript", "PostgreSQL", "MongoDB",
+  "AWS", "Docker", "REST APIs", "Microservices",
+  "OpenAI", "Python",
 ];
 
 const container = { hidden: {}, show: { transition: { staggerChildren: 0.05 } } };
